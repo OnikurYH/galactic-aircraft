@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #222;
+
+  font-family: Arial, sans-serif;
+}
+
+a {
+  color: #00DDAA;
+  text-decoration: none;
+
+  transition: 0.3s color;
+}
+
+a:hover {
+  color: #00FFAA;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 500px;
+
+  color: #EEE;
+  background-color: #111;
+}
+
+header {
+  font-size: 18pt;
+
+  text-align: center;
+  padding: 10px 15px;
+
+  background-color: #009977;
+}
+
+#mainCanvas {
+  width: 100%;
+}
+
+footer {
+  font-size: 10pt;
+
+  padding: 30px 15px;
+  text-align: center;
+}
