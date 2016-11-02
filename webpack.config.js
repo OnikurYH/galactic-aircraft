@@ -22,7 +22,8 @@ config.output = {
   path: path.join(__dirname, "dist"),
   //publicPath: "/assets/",
   filename: "js/[name].js",
-  jsonpFunction: "importJSONP"
+  jsonpFunction: "importJSONP",
+  publicPath: "/"
 }
 
 config.module = {
@@ -33,6 +34,10 @@ config.module = {
       loader: ExtractTextPlugin.extract(
         "style",
         "css!sass")
+    },
+    {
+      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?name=font/[name].[ext]&limit=10000&mimetype=application/octet-stream"
     }
   ],
 }
