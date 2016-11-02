@@ -10,7 +10,7 @@ export class PlaneEnemy extends BaseEnemy {
     private _rotation: number = 0;
 
     constructor () {
-        super (2);
+        super (2, 500);
 
         this.position.x = 100;
         this.velocity.y = 100;
@@ -19,13 +19,6 @@ export class PlaneEnemy extends BaseEnemy {
         this.size.y = 30;
 
         //this._showCollider = true;
-    }
-
-    public onCollide (other: any): void {
-        if ((other as IDamageable).hit !== undefined && (other instanceof Player)) {
-            (other as IDamageable).hit(1);
-            this.removeFromScene();
-        }
     }
 
     public onUpdate (gameTime: GameTime): void {

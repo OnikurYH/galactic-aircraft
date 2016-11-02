@@ -1,3 +1,3 @@
 export interface IDamageable {
-  hit(damage: number): void;
+  hit(source: any, damage: number): boolean;
 }

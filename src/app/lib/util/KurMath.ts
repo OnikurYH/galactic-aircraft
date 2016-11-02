@@ -10,4 +10,20 @@ export module KurMath {
   export function randomRange (min: number, max: number): number {
     return Math.floor(Math.random()*(max-min+1)+min);
   }
+
+  export function moveToward (value: number, to: number, speed: number): number {
+    let cSpeed = Math.ceil(speed);
+    let result = value;
+    if (value > to) {
+      result -= Math.floor(speed);
+      if (result < to)
+        result = to;
+    } else if (value < to) {
+      result += Math.ceil(speed);
+      if (result > to)
+        result = to;
+    }
+
+    return result;
+  }
 }

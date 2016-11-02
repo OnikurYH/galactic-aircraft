@@ -6,19 +6,12 @@ import { Player } from "../Player";
 
 export class CircleEnemy extends BaseEnemy {
   constructor () {
-    super(1);
+    super(1, 800);
 
     this.velocity.y = 330;
 
     this.size.x = 30;
     this.size.y = 30;
-  }
-
-  public onCollide (other: any): void {
-    if ((other as IDamageable).hit !== undefined && (other instanceof Player)) {
-      (other as IDamageable).hit(1);
-      this.removeFromScene();
-    }
   }
 
   public onUpdate (gameTime: GameTime): void {

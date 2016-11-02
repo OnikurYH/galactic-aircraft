@@ -1,15 +1,18 @@
 import * as moment from "moment";
 
-import { BaseCollisionObject, GameTime } from "../../lib";
+import { BaseObject, BaseCollisionObject, GameTime } from "../../lib";
 import { IDamageable } from "../IDamageable";
 
-import { Player } from "../Player";
+import { IBulletHitListener } from ".";
 
 export abstract class BaseBullet extends BaseCollisionObject {
+  protected shootBy: any;
   protected damage: number;
 
-  constructor () {
+  constructor (shootBy: any, damage: number) {
     super();
+    this.shootBy = shootBy;
+    this.damage = damage;
   }
 
   public onUpdate (gameTime: GameTime): void {
@@ -20,8 +23,11 @@ export abstract class BaseBullet extends BaseCollisionObject {
   }
 
   public onCollide (other: any): void {
-    if ((other as IDamageable).hit !== undefined && !(other instanceof Player)) {
-      (other as IDamageable).hit(1);
+    if ((other as IDamageable).hit != undefined && other !== this.shootBy) {
+      if ((other as IDamageable).hit(this, this.damage) &&(this.shootBy as IBulletHitListener).onBulletHit != undefined) {
+        (this.shootBy as IBulletHitListener).onBulletHit(other, this.damage);
+      }
+
       this.removeFromScene();
     }
   }

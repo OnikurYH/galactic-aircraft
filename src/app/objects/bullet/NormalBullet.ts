@@ -6,8 +6,8 @@ import { BaseObject } from "../../lib";
 export class NormalBullet extends BaseBullet {
   private speed: number = 230;
 
-  constructor() {
-    super();
+  constructor(shootBy: BaseObject) {
+    super(shootBy, 1);
 
     this.size.x = 7;
     this.size.y = 13;

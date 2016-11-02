@@ -1,18 +1,20 @@
 import * as moment from "moment";
 
-import { NormalBullet } from "./bullet/NormalBullet";
+import { IBulletHitListener, BaseBullet, NormalBullet } from "./bullet";
 
 import { BaseObject, BaseCollisionObject, GameTime } from "../lib";
 import { KurMath } from "../lib/util";
+import { RefValue } from "../lib/ref";
 
-import { BaseBullet } from "./bullet/BaseBullet";
-import { IDamageable } from "./IDamageable";
+import { BaseEnemy } from "./enemy";
+import { IDamageable } from ".";
 import { Keyboard } from "../lib/input/Keyboard";
 
-export class Player extends BaseCollisionObject implements IDamageable {
+export class Player extends BaseCollisionObject implements IDamageable, IBulletHitListener {
   private speed: number = 170;
   public maxHealth: number = 5;
   private _health: number = this.maxHealth;
+  private _score: RefValue<number> = RefValue.create(0);
 
   // Shoot --------------------------------------------------------------------/
   private fireRate = 0.5;
@@ -40,17 +42,22 @@ export class Player extends BaseCollisionObject implements IDamageable {
     //this._showCollider = true;
   }
 
-  public get health () { return this._health; }
+  public get health (): number { return this._health; }
   public set health (value: number) {
     this._health = value;
     if (this._health > this.maxHealth)
       this._health = this.maxHealth;
   }
 
-  public hit (damage: number): void {
+  public get score (): RefValue<number> { return this._score; }
+
+  public hit(source: any, damage: number): boolean {
     this.health -= damage;
-    if (this.health <= 0)
+    if (this.health <= 0) {
       this.removeFromScene();
+      return true;
+    }
+    return false;
   }
 
   public onCollide (other: BaseObject): void {
@@ -95,10 +102,16 @@ export class Player extends BaseCollisionObject implements IDamageable {
   }
 
   private shootBullet () {
-    let bullet = new NormalBullet();
+    let bullet = new NormalBullet(this);
     bullet.position.x = this.position.x + this.size.x / 2 - bullet.size.x / 2;
     bullet.position.y = this.position.y - this.size.y / 2;
     this.scene.addObject(bullet);
+  }
+
+  public onBulletHit (hit: any, damage: number): void {
+    if (hit instanceof BaseEnemy) {
+      this._score.value += (hit as BaseEnemy).earnScore;
+    }
   }
 
   public onDraw (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {

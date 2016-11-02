@@ -6,6 +6,7 @@ import { TextAlign, RanbowText } from "../lib/text";
 
 import { Player } from "../objects/Player";
 import { HealthBar } from "../objects/HealthBar";
+import { ScoreText } from "../objects/ScoreText";
 import { EnemySpawner } from "../objects/enemy/EnemySpawner";
 import { ItemSpawner } from "../objects/item";
 import { StarBackground } from "../objects/background/StarBackground";
@@ -13,6 +14,8 @@ import { StarBackground } from "../objects/background/StarBackground";
 export class GameScene extends Scene {
   private player: Player;
   private playerHealthBar: HealthBar;
+  private playerScoreText: ScoreText;
+
   private enemySpawner: EnemySpawner;
 
   private starBackground: StarBackground;
@@ -32,6 +35,9 @@ export class GameScene extends Scene {
     this.addObject(this.enemySpawner = new EnemySpawner());
     this.addObject(new ItemSpawner());
 
+    this.addObject(this.playerScoreText = new ScoreText(this.player.score));
+    this.playerScoreText.position.x = 10;
+    this.playerScoreText.position.y = 28;
     this.addObject(this.playerHealthBar = new HealthBar(this.player));
     this.playerHealthBar.position.x = 350;
     this.playerHealthBar.position.y = 10;
@@ -61,8 +67,8 @@ export class GameScene extends Scene {
 
     ctx.font = "12px Arial";
     ctx.fillStyle = "#FFF";
-    ctx.fillText("Use arrow to control your aircraft", 10, 18);
-    ctx.fillText("Press space to shoot", 10, 38);
+    ctx.fillText("Use arrow to control your aircraft", 10, 48);
+    ctx.fillText("Press space to shoot", 10, 68);
 
     ctx.restore();
   }
