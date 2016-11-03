@@ -25,6 +25,15 @@ a:hover {
   color: #00FFAA;
 }
 
+h1 {
+  font-family: "Press Start 2P";
+  font-size: 20pt;
+}
+
+img {
+  width: 100%;
+}
+
 .container {
   margin: 0 auto;
   max-width: 500px;
@@ -37,9 +46,9 @@ header {
   font-size: 18pt;
 
   text-align: center;
-  padding: 10px 15px;
+  padding: 30px 15px;
 
-  background-color: #009977;
+  background-color: #003311;
 }
 
 #mainCanvas {

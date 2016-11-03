@@ -21,8 +21,8 @@ export class HealthBar extends BaseObject {
 
   public onDraw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {
     ctx.fillStyle = "#FFF";
-    ctx.font = "16px Arial";
-    ctx.fillText("HP", this.position.x - 30, this.position.y + 16);
+    ctx.font = "16px 'Press Start 2P'";
+    ctx.fillText("HP", this.position.x - 37, this.position.y + 18);
 
     let eachBlockWidth = this.size.x / this._player.maxHealth;
 

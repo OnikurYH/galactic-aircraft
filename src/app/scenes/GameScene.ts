@@ -36,8 +36,8 @@ export class GameScene extends Scene {
     this.addObject(new ItemSpawner());
 
     this.addObject(this.playerScoreText = new ScoreText(this.player.score));
-    this.playerScoreText.position.x = 10;
-    this.playerScoreText.position.y = 28;
+    this.playerScoreText.position.x = 15;
+    this.playerScoreText.position.y = 30;
     this.addObject(this.playerHealthBar = new HealthBar(this.player));
     this.playerHealthBar.position.x = 350;
     this.playerHealthBar.position.y = 10;
@@ -53,7 +53,7 @@ export class GameScene extends Scene {
     if (this.player.health <= 0 && !this.isGameOver) {
       this.isGameOver = true;
       let lbGameover: RanbowText;
-      this.addObject(lbGameover = new RanbowText("Game over", "36px Arial Black"));
+      this.addObject(lbGameover = new RanbowText("Game over", "36px 'Press Start 2P'"));
       lbGameover.align = TextAlign.Center;
       lbGameover.position.x = this.canvas.width / 2;
       lbGameover.position.y = this.canvas.height / 2;
