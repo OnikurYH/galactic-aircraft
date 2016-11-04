@@ -2,6 +2,7 @@ import * as $ from "jquery";
 import * as moment from "moment";
 
 import { Scene, GameTime } from "./lib";
+import { MousePointer } from "./lib/input";
 
 import { GameScene } from "./scenes/GameScene";
 
@@ -15,7 +16,10 @@ class Main {
   constructor () {
     this.gameTime = new GameTime();
 
-    this.canvas = <HTMLCanvasElement> $("#mainCanvas")[0];
+    let mainCanvas = $("#mainCanvas");
+    MousePointer.initWithListenElement(mainCanvas);
+
+    this.canvas = <HTMLCanvasElement> mainCanvas[0];
     this.ctx = this.canvas.getContext("2d");
     (<any> this.ctx).imageSmoothingEnabled = false;
 

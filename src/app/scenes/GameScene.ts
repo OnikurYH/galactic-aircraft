@@ -1,12 +1,11 @@
 import * as moment from "moment";
-import { KurMath } from "../lib/util";
+import { KurMath, Rect } from "../lib/util";
 
 import { Scene, GameTime } from "../lib";
 import { TextAlign, RanbowText } from "../lib/text";
+import { Button } from "../lib/ui";
 
-import { Player } from "../objects/Player";
-import { HealthBar } from "../objects/HealthBar";
-import { ScoreText } from "../objects/ScoreText";
+import { Player, HealthBar, ScoreText } from "../objects";
 import { EnemySpawner } from "../objects/enemy/EnemySpawner";
 import { ItemSpawner } from "../objects/item";
 import { StarBackground } from "../objects/background/StarBackground";
@@ -20,6 +19,7 @@ export class GameScene extends Scene {
 
   private starBackground: StarBackground;
 
+  private isParse: boolean = false;
   private isGameOver: boolean = false;
 
   constructor (canvas: HTMLCanvasElement) {
@@ -43,9 +43,37 @@ export class GameScene extends Scene {
     this.playerHealthBar.position.y = 10;
 
     this.addObject(this.starBackground = new StarBackground())
+
+    let btnParse: Button;
+    this.addUIElement(btnParse = new Button(this, Rect.make(10, 80, 100, 30), "Pause", {
+      backgroundColor: "#333",
+      color: "#FFF",
+      fontSize: 16,
+      fontFace: "Arial"
+    }));
+    btnParse.onMouseUp = () => {
+      this.isParse = true;
+
+      btnParse.interactive = false;
+      let parseOverlay: Button;
+      this.addUIElement(parseOverlay = new Button(this, Rect.make(0, 0, this.canvas.width, this.canvas.height), "Press to resume", {
+        backgroundColor: "rgba(0,80,50,0.5)",
+        color: "#FFF",
+        fontSize: 25,
+        fontFace: "'Press Start 2P'"
+      }));
+      parseOverlay.onMouseUp = () => {
+        this.isParse = false;
+        btnParse.interactive = true;
+        parseOverlay.removeFromScene();
+      }
+    };
   }
 
   public onUpdate (gameTime: GameTime): void {
+    if (this.isParse)
+      return;
+
     super.onUpdate(gameTime);
 
     this.starBackground.offsetStars(this.player.velocity.x);
