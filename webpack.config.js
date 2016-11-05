@@ -20,7 +20,6 @@ config.resolve = {
 
 config.output = {
   path: path.join(__dirname, "dist"),
-  //publicPath: "/assets/",
   filename: "js/[name].js",
   jsonpFunction: "importJSONP",
   publicPath: "/"
@@ -55,11 +54,11 @@ config.plugins = [
     chunksSortMode: 'dependency',
     inject: 'body'
   }),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //     warnings: false
-  //   }
-  // })
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  })
 ]
 
 config.devServer = {
