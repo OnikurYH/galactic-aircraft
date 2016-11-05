@@ -60,9 +60,7 @@ export class Player extends BaseCollisionObject implements IDamageable, IBulletH
     return false;
   }
 
-  public onCollide (other: BaseObject): void {
-    //console.log("Collide with", other);
-  }
+  public onCollide (other: BaseObject): void {}
 
   public onUpdate (gameTime: GameTime): void {
     super.onUpdate(gameTime);

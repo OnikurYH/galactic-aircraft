@@ -7,7 +7,6 @@ export class UIRanbowText extends UIText {
 
   constructor (scene: Scene, rect: Rect, text: string, opts?: UIElementOptions) {
     super(scene, rect, text, opts);
-    console.log(this);
   }
 
   public onUpdate (gameTime: GameTime): void {

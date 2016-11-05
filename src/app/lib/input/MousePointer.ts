@@ -12,8 +12,6 @@ export module MousePointer {
     let pOffset: JQueryCoordinates = _listenElementParent.offset();
     position.x = event.pageX - pOffset.left;
     position.y = event.pageY - pOffset.top;
-
-    //console.log("Position:", position);
   }
 
   export function initWithListenElement (listenElement: JQuery) {

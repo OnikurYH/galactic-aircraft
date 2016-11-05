@@ -11,8 +11,6 @@ export abstract class BaseCollisionObject extends BaseObject {
     let dX = other.position.x - this.position.x;
     let dY = other.position.y - this.position.y;
 
-    //console.log("Check", dX, dY, other.size.x, other.size.y);
-
     return (dX > -other.size.x && dX < other.size.x &&
         dY > -other.size.y && dY < other.size.y)
   }
