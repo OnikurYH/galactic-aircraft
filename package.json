@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "OnikurYH <onikuryh@gmail.com>",
-  "license": "GPL-3.0",
+  "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
     "@types/bluebird": "^3.0.35",
     "@types/node": "^6.0.45",

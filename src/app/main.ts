@@ -1,3 +1,10 @@
+/*!
+ * Galactic Aircraft
+ * @description A galactic shooting game in HTML5 Canvas
+ * @author OnikurYH
+ * @license GPL-v3
+ */
+
 import * as $ from "jquery";
 import * as moment from "moment";
 
@@ -33,9 +40,6 @@ class Main {
   }
 
   public toScene (scene: Scene) {
-    // if (!(name in this.scenes))
-    //   return console.warn(`Cannot find ${name} in scenes!`);
-
     if (this.currentScene != null)
       this.currentScene.onDeactive();
 
