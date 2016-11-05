@@ -1,7 +1,9 @@
 import { Point } from ".";
 
 export class Rect {
-  //public static make(): Rect;
+  public static make(): Rect;
+  public static make(x: number, y: number): Rect;
+  public static make(x: number, y: number, width: number, height: number): Rect;
   public static make(x: number = 0, y: number = 0, width: number = 0, height: number = 0): Rect {
     return new Rect(x, y, width, height);
   }

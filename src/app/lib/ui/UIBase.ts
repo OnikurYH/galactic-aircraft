@@ -4,7 +4,7 @@ import { UIElementOptions, getUIElementOptionsDefaults, MouseRectListener } from
 import { Scene, GameTime } from "..";
 import { Rect } from "../util";
 
-export class UIBase {
+export abstract class UIBase {
   private _uuid: string;
   private _markAsRemove: boolean = false;
 
@@ -12,12 +12,12 @@ export class UIBase {
   public scene: Scene;
   public opts: UIElementOptions;
 
-  constructor (scene: Scene, rect: Rect, opts: UIElementOptions = getUIElementOptionsDefaults()) {
+  constructor (scene: Scene, rect: Rect, opts: UIElementOptions) {
     this._uuid = uuid.v4();
 
     this.scene = scene;
     this.rect = rect;
-    this.opts = opts;
+    this.opts = getUIElementOptionsDefaults(opts);
   }
 
   public get uuid () { return this._uuid; }

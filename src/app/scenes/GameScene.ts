@@ -2,8 +2,7 @@ import * as moment from "moment";
 import { KurMath, Rect } from "../lib/util";
 
 import { Scene, GameTime } from "../lib";
-import { TextAlign, RanbowText } from "../lib/text";
-import { Button } from "../lib/ui";
+import { Button, UIText, UIRanbowText, TextAlign } from "../lib/ui";
 
 import { Player, HealthBar, ScoreText } from "../objects";
 import { EnemySpawner } from "../objects/enemy/EnemySpawner";
@@ -44,6 +43,7 @@ export class GameScene extends Scene {
 
     this.addObject(this.starBackground = new StarBackground())
 
+    // Parse button -----------------------------------------------------------/
     let btnParse: Button;
     this.addUIElement(btnParse = new Button(this, Rect.make(10, 80, 100, 30), "Pause", {
       backgroundColor: "#333",
@@ -56,18 +56,24 @@ export class GameScene extends Scene {
 
       btnParse.interactive = false;
       let parseOverlay: Button;
+      let info: UIText;
       this.addUIElement(parseOverlay = new Button(this, Rect.make(0, 0, this.canvas.width, this.canvas.height), "Press to resume", {
-        backgroundColor: "rgba(0,80,50,0.5)",
+        backgroundColor: "rgba(0,60,30,0.5)",
         color: "#FFF",
         fontSize: 25,
         fontFace: "'Press Start 2P'"
       }));
+      this.addUIElement(info = new UIText(this, Rect.make(10, this.canvas.height - 40, 100, 30), "Develop by OnikurYH"));
       parseOverlay.onMouseUp = () => {
         this.isParse = false;
         btnParse.interactive = true;
         parseOverlay.removeFromScene();
+        info.removeFromScene();
       }
     };
+    // Intro ------------------------------------------------------------------/
+    this.addUIElement(new UIText(this, Rect.make(10, 48), "Use arrow to control your aircraft"));
+    this.addUIElement(new UIText(this, Rect.make(10, 68), "Press space to shoot"));
   }
 
   public onUpdate (gameTime: GameTime): void {
@@ -80,24 +86,12 @@ export class GameScene extends Scene {
 
     if (this.player.health <= 0 && !this.isGameOver) {
       this.isGameOver = true;
-      let lbGameover: RanbowText;
-      this.addObject(lbGameover = new RanbowText("Game over", "36px 'Press Start 2P'"));
-      lbGameover.align = TextAlign.Center;
-      lbGameover.position.x = this.canvas.width / 2;
-      lbGameover.position.y = this.canvas.height / 2;
+      let lbGameover: UIRanbowText;
+      this.addUIElement(lbGameover = new UIRanbowText(this, Rect.make(0, 0, this.canvas.width, this.canvas.height), "Game over", {
+        fontFace: "'Press Start 2P'",
+        fontSize: 36,
+        textAlign: TextAlign.Center
+      }));
     }
-  }
-
-  public onDraw (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-    super.onDraw(canvas, ctx);
-
-    ctx.save();
-
-    ctx.font = "12px Arial";
-    ctx.fillStyle = "#FFF";
-    ctx.fillText("Use arrow to control your aircraft", 10, 48);
-    ctx.fillText("Press space to shoot", 10, 68);
-
-    ctx.restore();
   }
 }

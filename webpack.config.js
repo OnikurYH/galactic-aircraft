@@ -55,11 +55,11 @@ config.plugins = [
     chunksSortMode: 'dependency',
     inject: 'body'
   }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  })
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: {
+  //     warnings: false
+  //   }
+  // })
 ]
 
 config.devServer = {
