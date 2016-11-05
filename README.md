@@ -1,7 +1,7 @@
 # Galactic Aircraft
 > A galactic shooting game in HTML5 Canvas
 
-![Galactic Aircraft Icon](http://galacticaircraft.onikur.com/static/image/GalacticAircraft_Title.png "Galactic Aircraft Icon")
+![Galactic Aircraft Icon](https://raw.githubusercontent.com/OnikurYH/galactic-aircraft/master/doc/galacticaircraft_title_with_bg.png "Galactic Aircraft Icon")
 
 Use HTML5 Canvas + Typescript to develop it =)
 
