@@ -27,7 +27,10 @@ config.output = {
 
 config.module = {
   loaders: [
-    { test: /\.tsx?$/, loader: "babel-loader?presets[]=es2015!ts-loader" },
+    {
+      test: /\.tsx?$/,
+      loader: 'babel-loader?presets[]=es2015!ts-loader'
+    },
     {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract(
@@ -35,7 +38,7 @@ config.module = {
         "css!sass")
     },
     {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: "url?name=font/[name].[ext]&limit=10000&mimetype=application/octet-stream"
     }
   ],

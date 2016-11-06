@@ -5,6 +5,10 @@
  * @license GPL-v3
  */
 
+// Polyfill require -----------------------------------------------------------/
+// import "core-js/fn/object/assign";
+
+// Start main -----------------------------------------------------------------/
 import * as $ from "jquery";
 import * as moment from "moment";
 
