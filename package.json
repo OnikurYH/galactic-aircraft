@@ -9,6 +9,7 @@
   },
   "author": "OnikurYH <onikuryh@gmail.com>",
   "license": "SEE LICENSE IN LICENSE.md",
+  "repository": "https://github.com/OnikurYH/galactic-aircraft",
   "devDependencies": {
     "@types/bluebird": "^3.0.35",
     "@types/node": "^6.0.45",
